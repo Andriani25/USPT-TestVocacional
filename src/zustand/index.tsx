@@ -1,40 +1,48 @@
-import { create } from "zustand";
+import React, { createContext, useState, useContext } from "react";
 
-interface scores {
+interface Scores {
   medicina: number;
   sociales: number;
   innovacion: number;
 }
 
-interface Store {
-  view: string;
-  setView: (value: string) => void;
-  winner: string;
-  setWinner: (value: string) => void;
-  scores: scores;
-  setScores: (obj: scores) => void;
-  resetScores: () => void;
+interface TestContextType {
+  scores: Scores;
+  setScores: React.Dispatch<React.SetStateAction<Scores>>;
+  recommendedInstitute: string;
+  setRecommendedInstitute: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const zustandStore = create<Store>()((set) => ({
-  view: "welcome",
-  setView: (value: string) => set(() => ({ view: value })),
-  winner: "",
-  setWinner: (value: string) => set(() => ({ winner: value })),
-  scores: {
-    medicina: 0,
-    sociales: 0,
-    innovacion: 0,
-  },
-  setScores: (obj: scores) => set(() => ({ scores: obj })),
-  resetScores: () =>
-    set(() => ({
-      scores: {
-        medicina: 0,
-        sociales: 0,
-        innovacion: 0,
-      },
-    })),
-}));
+export const TestContext = createContext<TestContextType | null>(null);
 
-export default zustandStore;
+export const TestContextProvider: React.FC<React.PropsWithChildren> =
+  function ({ children }) {
+    const [scores, setScores] = useState({
+      medicina: 0,
+      sociales: 0,
+      innovacion: 0,
+    });
+
+    const [recommendedInstitute, setRecommendedInstitute] = useState("");
+
+    const value = {
+      scores,
+      setScores,
+      recommendedInstitute,
+      setRecommendedInstitute,
+    };
+
+    return (
+      <TestContext.Provider value={value}>{children}</TestContext.Provider>
+    );
+  };
+
+export const useTestContext = function () {
+  const context = useContext(TestContext);
+
+  if (!context) {
+    throw new Error("useContext must be used within a TestContextProvider");
+  }
+
+  return context;
+};

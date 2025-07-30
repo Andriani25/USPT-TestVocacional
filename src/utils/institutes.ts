@@ -1,4 +1,12 @@
-import { Heart, Users, Lightbulb } from "lucide-react";
+import { Heart, Users, Lightbulb, type LucideProps } from "lucide-react";
+
+export interface Institute{
+name: string,
+description: string,
+icon: React.ForwardRefExoticComponent<Omit<LucideProps, "ref"> & React.RefAttributes<SVGSVGElement>>
+color: string,
+careers: string[]
+}
 
 const institutes = {
   medicina: {
@@ -8,11 +16,9 @@ const institutes = {
     icon: Heart,
     color: "from-red-500 to-pink-500",
     careers: [
-      "Medicina Humana",
-      "Enfermería",
-      "Obstetricia",
-      "Nutrición",
-      "Psicología",
+      "Medicina",
+      "Kinesiología",
+      "Emergencias Médicas"
     ],
   },
   sociales: {
@@ -22,11 +28,11 @@ const institutes = {
     icon: Users,
     color: "from-blue-500 to-cyan-500",
     careers: [
-      "Derecho",
-      "Trabajo Social",
-      "Comunicaciones",
-      "Educación",
-      "Sociología",
+      "Abogacía",
+      "Relaciones Internacionales",
+      "Procuración",
+      "Comercio Exterior",
+      "Finanzas",
     ],
   },
   innovacion: {
@@ -35,11 +41,10 @@ const institutes = {
     icon: Lightbulb,
     color: "from-purple-500 to-indigo-500",
     careers: [
-      "Ingeniería de Sistemas",
-      "Administración",
-      "Marketing",
-      "Ingeniería Industrial",
-      "Economía",
+      "Gestión en Empresas Agroindustriales",
+      "Bromatología",
+      "Tecnología en los Alimentos",
+      "Guardaparque",
     ],
   },
 };
