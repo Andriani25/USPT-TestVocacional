@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useTestContext } from "@/context";
-import { useFetcher, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import { questions } from "@/utils/questions";
 import institutes from "@/utils/institutes";
 
