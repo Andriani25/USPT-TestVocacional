@@ -48,7 +48,7 @@ const WelcomeView: React.FC = function () {
               ayudará a descubrir cuál de nuestros institutos se adapta mejor a
               tu personalidad y intereses.
             </p>
-            <div className="grid grid-cols-1 gap-2 mt-4 sm:mt-8 sm:grid-cols-3 sm:gap-4">
+            <div className="grid grid-cols-1 gap-2 mt-4 sm:mt-8 sm:grid-cols-4 sm:gap-4">
               {Object.entries(institutes).map(([key, institute]) => {
                 const IconComponent = institute.icon;
                 return (

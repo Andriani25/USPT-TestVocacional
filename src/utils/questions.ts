@@ -6,6 +6,7 @@ interface Question {
     medicina: number;
     sociales: number;
     innovacion: number;
+    deportes: number;
   }[];
 }
 
@@ -18,101 +19,94 @@ export const questions: Question[] = [
         text: "Ayudar a personas enfermas",
         medicina: 3,
         sociales: 1,
-        innovacion: 0,
+        innovacion: 1,
+        deportes: 0
       },
       {
         text: "Resolver problemas sociales",
-        medicina: 0,
+        medicina: 1,
         sociales: 3,
         innovacion: 1,
+        deportes: 0
       },
       {
         text: "Crear nuevas tecnologías",
         medicina: 1,
-        sociales: 0,
+        sociales: 1,
         innovacion: 3,
+        deportes: 0
       },
       {
-        text: "Investigar nuevos tratamientos",
-        medicina: 2,
-        sociales: 0,
-        innovacion: 2,
-      },
+        text: "Deportes y actividades físicas",
+        medicina: 1,
+        sociales: 1,
+        innovacion: 0,
+        deportes: 3
+      }
     ],
   },
   {
     id: 2,
     question: "¿En qué ambiente te sientes más cómodo trabajando?",
     options: [
-      { text: "Hospital o clínica", medicina: 3, sociales: 0, innovacion: 0 },
+      { text: "Hospital o clínica", medicina: 3, sociales: 0, innovacion: 0, deportes: 0 },
       {
         text: "Comunidad o centros sociales",
         medicina: 0,
         sociales: 3,
         innovacion: 0,
+        deportes: 0
       },
-      {
-        text: "Laboratorio o startup",
-        medicina: 1,
-        sociales: 0,
-        innovacion: 3,
-      },
-      { text: "Oficina corporativa", medicina: 0, sociales: 1, innovacion: 2 },
+      { text: "Oficina corporativa", medicina: 0, sociales: 0, innovacion: 3, deportes: 0 },
+      { text: "Gimnasio o instalaciones deportivas", medicina: 1, sociales: 0, innovacion: 0, deportes: 3 },
     ],
   },
   {
     id: 3,
     question: "¿Qué tipo de problemas prefieres resolver?",
     options: [
-      { text: "Diagnósticos médicos", medicina: 3, sociales: 0, innovacion: 1 },
+      { text: "Diagnósticos médicos", medicina: 3, sociales: 0, innovacion: 0, deportes: 0 },
       {
         text: "Conflictos interpersonales",
         medicina: 0,
         sociales: 3,
         innovacion: 0,
-      },
-      {
-        text: "Desafíos tecnológicos",
-        medicina: 1,
-        sociales: 0,
-        innovacion: 3,
+        deportes: 0
       },
       {
         text: "Estrategias de negocio",
         medicina: 0,
         sociales: 1,
-        innovacion: 2,
+        innovacion: 3,
+        deportes: 0
       },
+      { text: "Mejorar el estado físico de una persona", medicina: 2, sociales: 0, innovacion: 0, deportes: 3 },
     ],
   },
   {
     id: 4,
     question: "¿Cuál es tu materia favorita?",
     options: [
-      { text: "Biología y Química", medicina: 3, sociales: 0, innovacion: 1 },
-      {
-        text: "Historia y Literatura",
-        medicina: 0,
-        sociales: 3,
-        innovacion: 0,
-      },
-      { text: "Matemáticas y Física", medicina: 1, sociales: 0, innovacion: 3 },
+      { text: "Biología y Química", medicina: 3, sociales: 0, innovacion: 1, deportes: 1 },
+      { text: "Matemáticas y Física", medicina: 1, sociales: 0, innovacion: 3, deportes: 0 },
       {
         text: "Economía y Administración",
         medicina: 0,
-        sociales: 1,
-        innovacion: 2,
+        sociales: 3,
+        innovacion: 3,
+        deportes: 0
       },
+      { text: "Educación Física", medicina: 1, sociales: 0, innovacion: 0, deportes: 3 },
     ],
   },
   {
     id: 5,
     question: "¿Qué te motiva más en la vida?",
     options: [
-      { text: "Salvar vidas", medicina: 3, sociales: 1, innovacion: 0 },
-      { text: "Ayudar a la sociedad", medicina: 1, sociales: 3, innovacion: 0 },
-      { text: "Innovar y crear", medicina: 0, sociales: 0, innovacion: 3 },
-      { text: "Liderar proyectos", medicina: 1, sociales: 1, innovacion: 2 },
+      { text: "Salvar vidas", medicina: 3, sociales: 0, innovacion: 0, deportes: 0 },
+      { text: "Ayudar a la sociedad", medicina: 1, sociales: 3, innovacion: 0, deportes: 0 },
+      { text: "Innovar y crear", medicina: 0, sociales: 0, innovacion: 3, deportes: 0 },
+      { text: "Ser profesional en un deporte", medicina: 0, sociales: 0, innovacion: 0, deportes: 3}
     ],
   },
   {
@@ -124,35 +118,33 @@ export const questions: Question[] = [
         medicina: 3,
         sociales: 2,
         innovacion: 0,
+        deportes: 0
       },
       {
         text: "En equipos multidisciplinarios",
         medicina: 1,
         sociales: 3,
         innovacion: 1,
+        deportes: 1
       },
-      {
-        text: "De forma independiente",
-        medicina: 1,
-        sociales: 0,
-        innovacion: 3,
-      },
-      { text: "Liderando equipos", medicina: 1, sociales: 2, innovacion: 2 },
+      { text: "Liderando equipos", medicina: 0, sociales: 2, innovacion: 3, deportes: 0 },
+      { text: "En el staff de un equipo de deportes", medicina: 0, sociales: 0, innovacion: 0, deportes: 3 }
     ],
   },
   {
     id: 7,
     question: "¿Qué habilidad consideras tu fortaleza?",
     options: [
-      { text: "Empatía y cuidado", medicina: 3, sociales: 2, innovacion: 0 },
+      { text: "Empatía y cuidado", medicina: 3, sociales: 1, innovacion: 0, deportes: 0 },
       {
         text: "Comunicación y persuasión",
-        medicina: 1,
+        medicina: 0,
         sociales: 3,
         innovacion: 1,
+        deportes: 0
       },
-      { text: "Análisis y lógica", medicina: 2, sociales: 0, innovacion: 3 },
-      { text: "Liderazgo y visión", medicina: 1, sociales: 1, innovacion: 2 },
+      { text: "Análisis y lógica", medicina: 2, sociales: 0, innovacion: 2, deportes: 0 },
+      { text: "Trabajo en equipo y liderazgo", medicina: 1, sociales: 1, innovacion: 3, deportes: 3}
     ],
   },
   {
@@ -160,29 +152,33 @@ export const questions: Question[] = [
     question: "¿Qué tipo de impacto quieres tener?",
     options: [
       {
-        text: "Mejorar la salud individual",
+        text: "Mejorar la calidad de vida de las personas",
         medicina: 3,
         sociales: 1,
-        innovacion: 0,
+        innovacion: 1,
+        deportes: 3
       },
       {
         text: "Transformar comunidades",
         medicina: 0,
         sociales: 3,
         innovacion: 1,
+        deportes: 0
       },
       {
         text: "Revolucionar industrias",
-        medicina: 1,
-        sociales: 0,
-        innovacion: 3,
-      },
-      {
-        text: "Crear nuevos mercados",
         medicina: 0,
         sociales: 1,
-        innovacion: 2,
+        innovacion: 3,
+        deportes: 0
       },
+      {
+        text: "Fomentar el deporte y la salud física en todas las edades",
+        medicina: 1,
+        sociales: 1,
+        innovacion: 0,
+        deportes: 3
+      }
     ],
   },
   {
@@ -194,25 +190,29 @@ export const questions: Question[] = [
         medicina: 3,
         sociales: 1,
         innovacion: 0,
+        deportes: 0
       },
       {
         text: "Proyectos comunitarios",
-        medicina: 0,
+        medicina: 2,
         sociales: 3,
         innovacion: 0,
+        deportes: 0
       },
       {
-        text: "Competencias de programación",
+        text: "Emprendimientos comerciales",
         medicina: 0,
-        sociales: 0,
+        sociales: 1,
         innovacion: 3,
+        deportes: 0
       },
       {
-        text: "Emprendimiento estudiantil",
+        text: "Hacer deportes",
         medicina: 1,
-        sociales: 1,
-        innovacion: 2,
-      },
+        sociales: 0,
+        innovacion: 0,
+        deportes: 3
+      }
     ],
   },
   {
@@ -224,20 +224,23 @@ export const questions: Question[] = [
         medicina: 3,
         sociales: 0,
         innovacion: 0,
+        deportes: 0
       },
-      { text: "Como líder social", medicina: 0, sociales: 3, innovacion: 0 },
-      {
-        text: "Como innovador tecnológico",
-        medicina: 0,
-        sociales: 0,
-        innovacion: 3,
-      },
+      { text: "Como un activista social", medicina: 0, sociales: 3, innovacion: 0, deportes: 0 },
       {
         text: "Como CEO de una empresa",
-        medicina: 1,
+        medicina: 0,
         sociales: 1,
-        innovacion: 2,
+        innovacion: 3,
+        deportes: 0
       },
+      {
+        text: "Como entrenador o deportista profesional",
+        medicina: 1,
+        sociales: 0,
+        innovacion: 0,
+        deportes: 3
+      }
     ],
   },
   {
@@ -249,25 +252,29 @@ export const questions: Question[] = [
         medicina: 3,
         sociales: 0,
         innovacion: 1,
+        deportes: 2
       },
       {
         text: "La psicología y comportamiento social",
         medicina: 1,
         sociales: 3,
         innovacion: 0,
+        deportes: 0
       },
       {
-        text: "Las nuevas tecnologías",
+        text: "Los avances tecnológicos",
         medicina: 0,
         sociales: 0,
         innovacion: 3,
+        deportes: 0
       },
       {
-        text: "Las estrategias de mercado",
+        text: "La estrategia y tácticas deportivas",
         medicina: 0,
-        sociales: 1,
-        innovacion: 2,
-      },
+        sociales: 0,
+        innovacion: 0,
+        deportes: 3
+      }
     ],
   },
   {
@@ -279,25 +286,29 @@ export const questions: Question[] = [
         medicina: 3,
         sociales: 0,
         innovacion: 1,
+        deportes: 0
       },
       {
         text: "Problemas sociales profundos",
         medicina: 0,
         sociales: 3,
         innovacion: 0,
+        deportes: 0
       },
       {
         text: "Desafíos técnicos innovadores",
         medicina: 1,
         sociales: 0,
         innovacion: 3,
+        deportes: 0
       },
       {
-        text: "Oportunidades de negocio",
+        text: "Retos físicos y de equipo",
         medicina: 0,
-        sociales: 1,
-        innovacion: 2,
-      },
+        sociales: 0,
+        innovacion: 0,
+        deportes: 3
+      }
     ],
   },
   {
@@ -309,25 +320,29 @@ export const questions: Question[] = [
         medicina: 3,
         sociales: 0,
         innovacion: 1,
+        deportes: 0
       },
       {
         text: "Técnicas de investigación social",
         medicina: 0,
         sociales: 3,
         innovacion: 0,
+        deportes: 0
       },
       {
         text: "Software y tecnología avanzada",
         medicina: 1,
         sociales: 0,
         innovacion: 3,
+        deportes: 0
       },
       {
-        text: "Análisis de datos y métricas",
+        text: "Planes de entrenamiento y pesas",
         medicina: 1,
-        sociales: 1,
-        innovacion: 2,
-      },
+        sociales: 0,
+        innovacion: 0,
+        deportes: 3
+      }
     ],
   },
   {
@@ -337,52 +352,53 @@ export const questions: Question[] = [
       {
         text: "Ver a un paciente recuperarse",
         medicina: 3,
-        sociales: 1,
+        sociales: 0,
         innovacion: 0,
+        deportes: 0
       },
       {
         text: "Resolver un conflicto social",
         medicina: 0,
         sociales: 3,
         innovacion: 0,
+        deportes: 0
       },
       {
         text: "Crear algo completamente nuevo",
         medicina: 0,
         sociales: 0,
         innovacion: 3,
+        deportes: 0
       },
       {
-        text: "Alcanzar objetivos ambiciosos",
-        medicina: 1,
-        sociales: 1,
-        innovacion: 2,
-      },
+        text: "Romper un récord físico",
+        medicina: 0,
+        sociales: 0,
+        innovacion: 0,
+        deportes: 3
+      }
     ],
   },
   {
     id: 15,
     question: "¿En qué área te gustaría especializarte?",
     options: [
-      { text: "Ciencias de la salud", medicina: 3, sociales: 0, innovacion: 0 },
+      { text: "Ciencias de la salud", medicina: 3, sociales: 0, innovacion: 0, deportes: 0 },
       {
         text: "Ciencias sociales y humanas",
         medicina: 0,
         sociales: 3,
         innovacion: 0,
+        deportes: 0
       },
       {
         text: "Tecnología e innovación",
         medicina: 0,
         sociales: 0,
         innovacion: 3,
+        deportes: 0
       },
-      {
-        text: "Negocios y emprendimiento",
-        medicina: 1,
-        sociales: 1,
-        innovacion: 2,
-      },
+      { text: "Investigación en entrenamientos físicos y el cuerpo humano", medicina: 1, sociales: 0, innovacion: 0, deportes: 3 }
     ],
   },
 ];

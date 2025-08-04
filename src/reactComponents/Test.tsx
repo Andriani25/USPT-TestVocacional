@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useTestContext } from "@/zustand";
-import { useNavigate } from "react-router";
+import { useTestContext } from "@/context";
+import { useFetcher, useNavigate } from "react-router";
 import { questions } from "@/utils/questions";
+import institutes from "@/utils/institutes";
 
 // UI
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
@@ -14,11 +15,12 @@ import robotAndMan from "../assets/Man and robot with computers sitting together
 const Test: React.FC = function () {
   const navigate = useNavigate();
 
-  // Zustand
+  // Context
   const contextData = useTestContext();
   const setWinner = contextData.setRecommendedInstitute;
   const scores = contextData.scores;
   const setScores = contextData.setScores;
+  const setInstitute = contextData.setInstitute;
   //
 
   // Estado para controlar la pregunta actual
@@ -34,8 +36,8 @@ const Test: React.FC = function () {
       medicina: prev.medicina + option.medicina,
       sociales: prev.sociales + option.sociales,
       innovacion: prev.innovacion + option.innovacion,
+      deportes: prev.deportes + option.deportes,
     }));
-
     if (currentQuestion < questions.length - 1) {
       setCurrentQuestion((prev) => prev + 1);
       setSelectedOption(null);
@@ -43,24 +45,31 @@ const Test: React.FC = function () {
   };
 
   useEffect(() => {
+    console.log("SCORES", scores);
+  }, [scores]);
+
+  useEffect(() => {
     const maxScore = Math.max(
       scores.innovacion,
       scores.medicina,
-      scores.sociales
+      scores.sociales,
+      scores.deportes
     );
 
     if (maxScore === scores.medicina) {
-      setWinner("medicina");
+      setWinner(institutes.medicina.name);
+      setInstitute(institutes.medicina);
     } else if (maxScore === scores.sociales) {
-      setWinner("sociales");
+      setWinner(institutes.sociales.name);
+      setInstitute(institutes.sociales);
+    } else if (maxScore === scores.deportes) {
+      setWinner(institutes.deportes.name);
+      setInstitute(institutes.deportes);
     } else {
-      setWinner("innovacion");
+      setWinner(institutes.innovacion.name);
+      setInstitute(institutes.innovacion);
     }
-
-    if (currentQuestion === questions.length - 1) {
-      navigate("/result");
-    }
-  }, [scores, currentQuestion]);
+  }, [scores]);
 
   const progress = (currentQuestion / questions.length) * 100;
 
@@ -101,8 +110,10 @@ const Test: React.FC = function () {
                     : "bg-white/10 border-white/20 text-white hover:bg-white/20 active:bg-white/30"
                 }`}
                 onClick={() => {
-                  setSelectedOption(index);
-                  setTimeout(() => handleAnswer(index), 500);
+                  currentQuestion === questions.length - 1
+                    ? navigate("/result")
+                    : setSelectedOption(index);
+                  handleAnswer(index);
                 }}
               >
                 <span className="text-left">{option.text}</span>

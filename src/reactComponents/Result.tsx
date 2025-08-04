@@ -1,6 +1,7 @@
 import type React from "react";
 import institutes from "@/utils/institutes";
-import { useTestContext } from "@/zustand";
+import { useTestContext } from "@/context";
+import { getRandomCellphone } from "@/utils/cellPhones";
 
 // UI
 import {
@@ -21,29 +22,23 @@ import robotCloud from "../assets/Cloud robotics abstract.json";
 const Result: React.FC = function () {
   const contextData = useTestContext();
 
-  // Zustand
-  const recommendedInstitute = contextData.recommendedInstitute;
+  // Context
   const scores = contextData.scores;
   const setScores = contextData.setScores;
-  const setRecommendedInstitute = contextData.setRecommendedInstitute;
+  const recommendedInstitute = contextData.recommendedInstitute;
+  const institute = contextData.institute;
   //
+
+  console.log("SCORES IN RESULT", scores);
 
   const navigate = useNavigate();
 
-  let winner = recommendedInstitute;
-  let institute;
-
-  if (winner === "medicina") {
-    institute = institutes.medicina;
-  }
-  if (winner === "sociales") {
-    institute = institutes.sociales;
-  } else {
-    institute = institutes.innovacion;
-  }
-
   const IconComponent = institute.icon;
-  const totalScore = scores.medicina + scores.sociales + scores.innovacion;
+
+  const totalScore =
+    scores.sociales + scores.medicina + scores.innovacion + scores.deportes;
+
+  console.log("TOTAL SCORE", totalScore);
 
   const resetTest = () => {
     navigate("/");
@@ -51,8 +46,8 @@ const Result: React.FC = function () {
       medicina: 0,
       sociales: 0,
       innovacion: 0,
+      deportes: 0,
     });
-    setRecommendedInstitute("");
   };
 
   return (
@@ -85,7 +80,7 @@ const Result: React.FC = function () {
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-3 sm:space-y-6 px-2 pb-3 sm:px-6 sm:pb-6">
-          <div className="grid grid-cols-1 gap-2 sm:gap-4 md:grid-cols-3">
+          <div className="grid grid-cols-1 gap-2 sm:gap-4 md:grid-cols-4">
             {Object.entries(scores).map(([key, score]) => {
               const inst = institutes[key as keyof typeof institutes];
               const InstIcon = inst.icon;
@@ -96,7 +91,7 @@ const Result: React.FC = function () {
                 <div
                   key={key}
                   className={`p-3 sm:p-4 rounded-lg ${
-                    key === recommendedInstitute
+                    institute.name === recommendedInstitute
                       ? `bg-gradient-to-r ${inst.color} bg-opacity-30`
                       : "bg-white/10"
                   } border border-white/20`}
@@ -144,7 +139,13 @@ const Result: React.FC = function () {
             <Button
               className={`flex-1 bg-gradient-to-r ${institute.color} hover:opacity-90 active:opacity-80 text-white font-semibold py-2 sm:py-3 text-xs sm:text-base`}
             >
-              Más Información
+              <a
+                className="flex flex-1 items-center justify-center"
+                href={getRandomCellphone()}
+                target="_blank"
+              >
+                Más Información
+              </a>
             </Button>
           </div>
         </CardContent>
