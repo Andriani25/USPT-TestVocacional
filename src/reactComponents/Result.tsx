@@ -85,7 +85,7 @@ const Result: React.FC = function () {
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-3 sm:space-y-6 px-2 pb-3 sm:px-6 sm:pb-6">
-          <div className="grid grid-cols-1 gap-2 sm:gap-4 md:grid-cols-4">
+          <div className="grid grid-cols-1 gap-2 sm:gap-4 md:grid-cols-5">
             {Object.entries(scores).map(([key, score]) => {
               const inst = institutes[key as keyof typeof institutes];
               const InstIcon = inst.icon;

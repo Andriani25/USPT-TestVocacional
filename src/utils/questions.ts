@@ -151,7 +151,8 @@ export const questions: Question[] = [
         disenio: 0
       },
       { text: "Liderando equipos", medicina: 0, sociales: 2, innovacion: 3, deportes: 0, disenio: 1 },
-      { text: "En el staff de un equipo de deportes", medicina: 0, sociales: 0, innovacion: 0, deportes: 3, disenio: 0 }
+      { text: "En el staff de un equipo de deportes", medicina: 0, sociales: 0, innovacion: 0, deportes: 3, disenio: 0 },
+      { text: "Diseñando bocetos o dibujos", medicina: 0, sociales: 0, innovacion: 2, deportes: 0, disenio: 3}
     ],
   },
   {
@@ -384,6 +385,9 @@ export const questions: Question[] = [
         innovacion: 0,
         deportes: 3,
         disenio: 0
+      },
+      {
+        text: "Diseñar una idea con materiales limitados", medicina: 0, sociales: 0, innovacion: 0, deportes: 0, disenio: 0
       }
     ],
   },
