@@ -36,7 +36,11 @@ const Result: React.FC = function () {
   const IconComponent = institute.icon;
 
   const totalScore =
-    scores.sociales + scores.medicina + scores.innovacion + scores.deportes;
+    scores.sociales +
+    scores.medicina +
+    scores.innovacion +
+    scores.deportes +
+    scores.disenio;
 
   console.log("TOTAL SCORE", totalScore);
 
@@ -47,6 +51,7 @@ const Result: React.FC = function () {
       sociales: 0,
       innovacion: 0,
       deportes: 0,
+      disenio: 0,
     });
   };
 

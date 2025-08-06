@@ -29,7 +29,7 @@ const WelcomeView: React.FC = function () {
           className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48"
         />
       </div>
-      <Card className="w-full max-w-[98vw] sm:max-w-2xl bg-white/10 backdrop-blur-lg border-white/20 text-white">
+      <Card className="w-full max-w-[98vw] sm:max-w-5xl bg-white/10 backdrop-blur-lg border-white/20 text-white">
         <CardHeader className="text-center space-y-2 sm:space-y-3 px-2 py-4 sm:px-4 sm:py-6">
           <div className="mx-auto w-14 h-14 sm:w-20 sm:h-20 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full flex items-center justify-center">
             <GraduationCap className="w-7 h-7 sm:w-10 sm:h-10 text-white" />
@@ -48,7 +48,7 @@ const WelcomeView: React.FC = function () {
               ayudará a descubrir cuál de nuestros institutos se adapta mejor a
               tu personalidad y intereses.
             </p>
-            <div className="grid grid-cols-1 gap-2 mt-4 sm:mt-8 sm:grid-cols-4 sm:gap-4">
+            <div className="grid grid-cols-1 gap-2 mt-4 sm:mt-8 sm:grid-cols-5 sm:gap-4">
               {Object.entries(institutes).map(([key, institute]) => {
                 const IconComponent = institute.icon;
                 return (

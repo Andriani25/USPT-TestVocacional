@@ -7,6 +7,7 @@ interface Scores {
   sociales: number;
   innovacion: number;
   deportes: number;
+  disenio: number;
 }
 
 interface TestContextType {
@@ -27,6 +28,7 @@ export const TestContextProvider: React.FC<React.PropsWithChildren> =
       sociales: 0,
       innovacion: 0,
       deportes: 0,
+      disenio: 0,
     });
 
     const [recommendedInstitute, setRecommendedInstitute] = useState("");

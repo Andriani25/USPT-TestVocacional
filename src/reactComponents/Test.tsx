@@ -37,6 +37,7 @@ const Test: React.FC = function () {
       sociales: prev.sociales + option.sociales,
       innovacion: prev.innovacion + option.innovacion,
       deportes: prev.deportes + option.deportes,
+      disenio: prev.disenio + option.disenio,
     }));
     if (currentQuestion < questions.length - 1) {
       setCurrentQuestion((prev) => prev + 1);
@@ -53,7 +54,8 @@ const Test: React.FC = function () {
       scores.innovacion,
       scores.medicina,
       scores.sociales,
-      scores.deportes
+      scores.deportes,
+      scores.disenio
     );
 
     if (maxScore === scores.medicina) {
@@ -65,7 +67,10 @@ const Test: React.FC = function () {
     } else if (maxScore === scores.deportes) {
       setWinner(institutes.deportes.name);
       setInstitute(institutes.deportes);
-    } else {
+    } else if (maxScore === scores.disenio) {
+      setWinner(institutes.disenio.name);
+      setInstitute(institutes.disenio);
+    } else if (maxScore === scores.innovacion) {
       setWinner(institutes.innovacion.name);
       setInstitute(institutes.innovacion);
     }
