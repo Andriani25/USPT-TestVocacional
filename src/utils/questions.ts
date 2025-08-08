@@ -108,7 +108,7 @@ export const questions: Question[] = [
       { text: "Biología y Química", medicina: 3, sociales: 0, innovacion: 1, deportes: 1, disenio: 0 },
       { text: "Matemáticas y Física", medicina: 1, sociales: 0, innovacion: 3, deportes: 0, disenio: 0 },
       {
-        text: "Economía y Administración",
+        text: "Economía y Politica",
         medicina: 0,
         sociales: 3,
         innovacion: 3,
@@ -210,7 +210,7 @@ export const questions: Question[] = [
         disenio: 0
       },
       {
-        text: "Crear obras de arte que inspiren",
+        text: "Crear objetos útiles y prácticos",
         medicina: 0,
         sociales: 0,
         innovacion: 1,
@@ -295,7 +295,7 @@ export const questions: Question[] = [
         disenio: 0
       },
       {
-        text: "Como un artista reconocido",
+        text: "Como un diseñador reconocido",
         medicina: 0,
         sociales: 0,
         innovacion: 1,
@@ -341,7 +341,7 @@ export const questions: Question[] = [
         disenio: 0
       },
       {
-        text: "El arte y la creatividad visual o auditiva",
+        text: "El arte, practicidad y la creatividad visual o auditiva",
         medicina: 0,
         sociales: 0,
         innovacion: 1,
@@ -387,7 +387,7 @@ export const questions: Question[] = [
         disenio: 0
       },
       {
-        text: "Diseñar una idea con materiales limitados", medicina: 0, sociales: 0, innovacion: 0, deportes: 0, disenio: 0
+        text: "Diseñar una idea con materiales limitados", medicina: 0, sociales: 0, innovacion: 1, deportes: 0, disenio: 3
       }
     ],
   },
@@ -505,7 +505,7 @@ export const questions: Question[] = [
         disenio: 2
       },
       { text: "Investigación en entrenamientos físicos y el cuerpo humano", medicina: 1, sociales: 0, innovacion: 0, deportes: 3, disenio: 0 },
-      { text: "Diseño gráfico y multimedia", medicina: 0, sociales: 0, innovacion: 1, deportes: 0, disenio: 3 }
+      { text: "Diseño de mobiliaria o textiles", medicina: 0, sociales: 0, innovacion: 1, deportes: 0, disenio: 3 }
     ],
   },
 ];
