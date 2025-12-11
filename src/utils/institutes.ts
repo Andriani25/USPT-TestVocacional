@@ -1,11 +1,11 @@
 import { Heart, Users, Lightbulb, Volleyball, Building, type LucideProps } from "lucide-react";
 
-export interface Institute{
-name: string,
-description: string,
-icon: React.ForwardRefExoticComponent<Omit<LucideProps, "ref"> & React.RefAttributes<SVGSVGElement>>
-color: string,
-careers: string[]
+export interface Institute {
+  name: string,
+  description: string,
+  icon: React.ForwardRefExoticComponent<Omit<LucideProps, "ref"> & React.RefAttributes<SVGSVGElement>>
+  color: string,
+  careers: string[]
 }
 
 const institutes = {
@@ -18,11 +18,13 @@ const institutes = {
     careers: [
       "Medicina",
       "Kinesiología",
-      "Emergencias Médicas"
+      "Emergencias Médicas",
+      "Tecnicatura en Administración en Salud (Distancia)",
+      "Tecnicatura en Administración en Farmacia (Distancia)"
     ],
   },
   sociales: {
-    name: "Instituto de Estudios Sociales, Política y Cultura",
+    name: "Instituto de Estudios Sociales y Política",
     description:
       "El Instituto de Sociales se caracteriza por formar de manera didáctica a todos nuestros alumnos gracias a las distintas actividades que se realiza en cada carrera. Además contamos con la Sala de Litigación en nuestra Sede Plaza, en donde alumnos de Abogacía, Comercio Exterior, y Relaciones Internacionales realizan sus prácticas tanto de juicios con jurado, y simulaciones de sesiones de la ONU.",
     icon: Users,
@@ -33,23 +35,27 @@ const institutes = {
       "Procuración",
       "Comercio Exterior",
       "Finanzas",
-      "Tecnicatura y Licenciatura en Ceremonial, Protocolo y Organización de Eventos (Disponible a Distancia)"
+      "Tecnicatura y Licenciatura en Ceremonial, Protocolo y Organización de Eventos (Disponible a Distancia)",
+      "Licenciatura en Periodismo (Distancia)",
+      "Profesorado en Educacion Inicial, Primaria, Universitaria o en Músical C.C (Distancia)",
+      "Licenciatura en Educación Inicial, Primaria o Musical C.C (Distancia)",
+      "Tecnicatura y Licenciatura en Seguridad Penitenciaria o Ciudadana (Distancia)"
     ],
   },
   disenio: {
-  name: "Instituto de Diseño, Estrategia y Creatividad",
-  description: "El Instituto de Diseño se encarga de formar profesionales de gran capacidad técnica que cubran los requerimientos de la región relacionadas al diseño y creatividad. Investigando sobre problemáticas vinculadas al diseño  ",
-  icon: Building,
-  color: "from-orange-500 to-yellow-500",
-  careers: [
-    "Diseño Industrial",
-    "Diseño Textil",
-    "Arquitectura"
-  ]
+    name: "Instituto de Diseño, Estrategia y Creatividad",
+    description: "El Instituto de Diseño se encarga de formar profesionales de gran capacidad técnica que cubran los requerimientos de la región relacionadas al diseño y creatividad. Investigando sobre problemáticas vinculadas al diseño  ",
+    icon: Building,
+    color: "from-orange-500 to-yellow-500",
+    careers: [
+      "Diseño Industrial",
+      "Diseño Textil",
+      "Arquitectura"
+    ]
   },
   innovacion: {
     name: "Instituto de Desarrollo e Innovación Tecnológica",
-    description: "El Instituto de Competitividad e Innovación principalmente se centra en la creatividad del estudiante para resolver distintos inconvenientes, tanto empresariales como sociales. EL Instituto cuenta con el CIBA (Centro Integral de Biotecnología Aplicada), donde nuestros alumnos de Bromatología, de Ciencia y Tecnología de los alimentos, realizan sus prácticas profesionales. Esto les permite destacar en futuras aplicaciones de trabajo, e incluso dependiendo de su desempeño, pueden quedar trabajando en el CIBA.",
+    description: "El Instituto de Competitividad e Innovación principalmente se centra en la creatividad del estudiante para resolver distintos inconvenientes, tanto empresariales como sociales. El Instituto cuenta con el CIBA (Centro Integral de Biotecnología Aplicada), donde nuestros alumnos de Bromatología, de Ciencia y Tecnología de los alimentos, realizan sus prácticas profesionales. Esto les permite destacar en futuras aplicaciones de trabajo, e incluso dependiendo de su desempeño, pueden quedar trabajando en el CIBA.",
     icon: Lightbulb,
     color: "from-purple-500 to-indigo-500",
     careers: [
@@ -57,9 +63,11 @@ const institutes = {
       "Bromatología",
       "Tecnología en los Alimentos",
       "Guardaparque",
+      "Licenciatura en Ciencia de Datos (Distancia)",
+      "Licenciatura en Energias Renovables (Distancia)"
     ],
   },
-    deportes: {
+  deportes: {
     name: "Instituto de Educación y Gestión Deportiva",
     description: "El Instituto de Deporte se especializa en formar a los futuros profesionales del deporte, desde entrenadores hasta gestores deportivos.",
     icon: Volleyball,
@@ -67,6 +75,7 @@ const institutes = {
     careers: [
       "Gestión Deportiva",
       "Tecnicatura en Guía de Montaña",
+      "Licenciatura en Alto Rendimiento Deportivo C.C (Distancia)"
     ],
   }
 };

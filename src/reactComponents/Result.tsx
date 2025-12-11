@@ -1,4 +1,5 @@
 import type React from "react";
+import { useEffect, useRef } from "react";
 import institutes from "@/utils/institutes";
 import { useTestContext } from "@/context";
 import { getRandomCellphone } from "@/utils/cellPhones";
@@ -55,9 +56,205 @@ const Result: React.FC = function () {
     });
   };
 
+  // Animation Logic
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    let animationFrameId: number;
+    let particles: Particle[] = [];
+    let fireworks: Firework[] = [];
+    let width = window.innerWidth;
+    let height = window.innerHeight;
+
+    canvas.width = width;
+    canvas.height = height;
+
+    class Particle {
+      x: number;
+      y: number;
+      vx: number;
+      vy: number;
+      alpha: number;
+      color: string;
+      size: number;
+
+      constructor(x: number, y: number, color: string) {
+        this.x = x;
+        this.y = y;
+        const angle = Math.random() * Math.PI * 2;
+        const speed = Math.random() * 3 + 1;
+        this.vx = Math.cos(angle) * speed;
+        this.vy = Math.sin(angle) * speed;
+        this.alpha = 1;
+        this.color = color;
+        this.size = Math.random() * 3 + 1;
+      }
+
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        this.vy += 0.05; // Gravity
+        this.alpha -= 0.01;
+      }
+
+      draw(ctx: CanvasRenderingContext2D) {
+        ctx.globalAlpha = this.alpha;
+        ctx.fillStyle = this.color;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+        ctx.fill();
+      }
+    }
+
+    class Firework {
+      x: number;
+      y: number;
+      targetY: number;
+      vy: number;
+      color: string;
+      exploded: boolean;
+
+      constructor() {
+        this.x = Math.random() * width;
+        this.y = height;
+        this.targetY = Math.random() * (height / 2);
+        this.vy = -Math.random() * 5 - 10;
+        this.color = `hsl(${Math.random() * 360}, 100%, 50%)`;
+        this.exploded = false;
+      }
+
+      update() {
+        this.y += this.vy;
+        this.vy += 0.1; // Gravity
+        if (this.vy >= 0 || this.y <= this.targetY) {
+          this.exploded = true;
+          for (let i = 0; i < 50; i++) {
+            particles.push(new Particle(this.x, this.y, this.color));
+          }
+        }
+      }
+
+      draw(ctx: CanvasRenderingContext2D) {
+        if (!this.exploded) {
+          ctx.fillStyle = this.color;
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, 3, 0, Math.PI * 2, false);
+          ctx.fill();
+        }
+      }
+    }
+
+    // Confetti
+    class Confetti {
+        x: number;
+        y: number;
+        vx: number;
+        vy: number;
+        color: string;
+        angle: number;
+        speed: number;
+        
+        constructor() {
+            this.x = Math.random() * width;
+            this.y = -10;
+            this.vx = Math.random() * 2 - 1;
+            this.vy = Math.random() * 3 + 2;
+            this.color = `hsl(${Math.random() * 360}, 100%, 50%)`;
+            this.angle = Math.random() * 360;
+            this.speed = Math.random() * 0.2;
+        }
+
+        update() {
+            this.x += this.vx;
+            this.y += this.vy;
+            this.angle += this.speed;
+            if (this.y > height) {
+                this.y = -10; // Recycle if still active
+            }
+        }
+
+        draw(ctx: CanvasRenderingContext2D) {
+            ctx.save();
+            ctx.translate(this.x, this.y);
+            ctx.rotate(this.angle);
+            ctx.fillStyle = this.color;
+            ctx.fillRect(-5, -5, 10, 10);
+            ctx.restore();
+        }
+    }
+
+    let confettis: Confetti[] = [];
+    for(let i=0; i<100; i++) {
+        confettis.push(new Confetti());
+    }
+
+    let active = true;
+
+    const render = () => {
+      ctx.clearRect(0, 0, width, height);
+
+      // Fireworks
+      if (active && Math.random() < 0.05) {
+        fireworks.push(new Firework());
+      }
+
+      fireworks.forEach((fw, index) => {
+        fw.update();
+        fw.draw(ctx);
+        if (fw.exploded) fireworks.splice(index, 1);
+      });
+
+      particles.forEach((p, index) => {
+        p.update();
+        p.draw(ctx);
+        if (p.alpha <= 0) particles.splice(index, 1);
+      });
+
+      // Confetti
+      confettis.forEach((c, index) => {
+          c.update();
+          c.draw(ctx);
+          // Stop recycling if not active and off screen
+          if (!active && c.y > height) {
+              confettis.splice(index, 1);
+          }
+      });
+
+      if (active || fireworks.length > 0 || particles.length > 0 || confettis.length > 0) {
+          animationFrameId = requestAnimationFrame(render);
+      }
+    };
+
+    render();
+
+    const handleResize = () => {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width;
+      canvas.height = height;
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      cancelAnimationFrame(animationFrameId);
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 flex flex-col items-center justify-center p-2 sm:p-4">
-      <div className="w-full flex justify-center items-center mb-2 sm:mb-4">
+    <div className="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 flex flex-col items-center justify-center p-2 sm:p-4 relative overflow-hidden">
+      <canvas
+        ref={canvasRef}
+        className="absolute inset-0 w-full h-full pointer-events-none z-0"
+      />
+      <div className="w-full flex justify-center items-center mb-2 sm:mb-4 relative z-10">
         <Player
           autoplay
           loop
@@ -83,6 +280,30 @@ const Result: React.FC = function () {
           <CardDescription className="text-sm sm:text-lg lg:text-xl text-gray-200 mt-2 sm:mt-4 px-1 sm:px-2 leading-relaxed">
             {institute.description}
           </CardDescription>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4 w-full px-1 sm:px-2">
+            <Button
+              className={`flex-1 bg-gradient-to-r ${institute.color} hover:opacity-90 active:opacity-80 text-white font-semibold py-2 sm:py-3 text-xs sm:text-base`}
+            >
+              <a
+                className="flex flex-1 items-center justify-center"
+                href={getRandomCellphone()}
+                target="_blank"
+              >
+                ¡Habla con uno de nuestros asesores!
+              </a>
+            </Button>
+            <Button
+              className={`flex-1 bg-gradient-to-r ${institute.color} hover:opacity-90 active:opacity-80 text-white font-semibold py-2 sm:py-3 text-xs sm:text-base`}
+            >
+              <a
+                className="flex flex-1 items-center justify-center"
+                href="https://forms.gle/kadJhWimnoHTGNYn6"
+                target="_blank"
+              >
+                ¡Completá el formulario para atención especial!
+              </a>
+            </Button>
+          </div>
         </CardHeader>
         <CardContent className="space-y-3 sm:space-y-6 px-2 pb-3 sm:px-6 sm:pb-6">
           <div className="grid grid-cols-1 gap-2 sm:gap-4 md:grid-cols-5">
@@ -95,7 +316,7 @@ const Result: React.FC = function () {
               return (
                 <div
                   key={key}
-                  className={`p-3 sm:p-4 rounded-lg ${
+                  className={`flex-col place-content-around p-3 sm:p-4 rounded-lg ${
                     institute.name === recommendedInstitute
                       ? `bg-gradient-to-r ${inst.color} bg-opacity-30`
                       : "bg-white/10"
@@ -107,7 +328,7 @@ const Result: React.FC = function () {
                       {inst.name}
                     </span>
                   </div>
-                  <div className="text-xl sm:text-2xl font-bold">
+                  <div className="flex place-content-center text-xl sm:text-2xl font-bold">
                     {percentage}%
                   </div>
                   <Progress value={percentage} className="mt-2 h-2" />
@@ -140,17 +361,6 @@ const Result: React.FC = function () {
             >
               <RotateCcw className="mr-2 w-4 h-4" />
               Repetir Test
-            </Button>
-            <Button
-              className={`flex-1 bg-gradient-to-r ${institute.color} hover:opacity-90 active:opacity-80 text-white font-semibold py-2 sm:py-3 text-xs sm:text-base`}
-            >
-              <a
-                className="flex flex-1 items-center justify-center"
-                href={getRandomCellphone()}
-                target="_blank"
-              >
-                Más Información
-              </a>
             </Button>
           </div>
         </CardContent>
