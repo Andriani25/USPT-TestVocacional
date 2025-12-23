@@ -35,7 +35,7 @@ const WelcomeView: React.FC = function () {
             <GraduationCap className="w-7 h-7 sm:w-10 sm:h-10 text-white" />
           </div>
           <CardTitle className="text-xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent leading-tight">
-            Test Vocacional USPT
+           ¡Descubre tu carrera ideal en la USPT!
           </CardTitle>
           <CardDescription className="text-base sm:text-xl text-gray-200 px-1 sm:px-2">
             Descubre tu camino profesional ideal
